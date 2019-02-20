@@ -1,0 +1,9 @@
+export const LIST_ALL = "LIST_ALL";
+export const ADD_TASK = "ADD_TASK";
+export const TOGGLE_FORM = "TOGGLE_FORM";
+export const CLOSE_FORM = "CLOSE_FORM";
+export const OPEN_FORM = "OPEN_FORM";
+export const UPDATE_STATUS_TASK = "UPDATE_STATUS_TASK";
+export const EDIT_ITEM = "EDIT_ITEM";
+export const DELETE_ITEM_TASK = "DELETE_ITEM_TASK";
+export const UPDATE_ITEM = "UPDATE_ITEM";

@@ -29,10 +29,10 @@ class Control extends Component {
         </div>
         <div className="row mt-10">
           <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            <Search onSearch={this.props.onSearch} />
+            <Search />
           </div>
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <Sort onSort={this.props.onSort} />
+            <Sort />
           </div>
         </div>
       </div>

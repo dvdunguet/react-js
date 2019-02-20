@@ -1,30 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
-export default class Sort extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filterName: "",
-      filterStatus: -1,
-      sort: {
-        by: "name",
-        value: 1
-      }
-    };
-  }
+class Sort extends Component {
   onClick = (sortBy, sortValue) => {
-    this.setState({
-      sort: {
-        by: sortBy,
-        value: sortValue
-      }
-    });
-    this.props.onSort(sortBy, sortValue);
+    this.props.onSort({ sortBy, sortValue });
   };
 
   render() {
-    let { sort } = this.state;
+    let { sort } = this.props;
     return (
       <div className="dropdown">
         <button
@@ -46,7 +31,9 @@ export default class Sort extends Component {
             <a
               role="button"
               className={
-                sort.by === "name" && sort.value === 1 ? "sort_selected" : ""
+                sort.sortBy === "name" && sort.sortValue === 1
+                  ? "sort_selected"
+                  : ""
               }
             >
               <span className="fa fa-sort-alpha-asc pr-5"> Tên A-Z</span>
@@ -60,7 +47,9 @@ export default class Sort extends Component {
             <a
               role="button"
               className={
-                sort.by === "name" && sort.value === -1 ? "sort_selected" : ""
+                sort.sortBy === "name" && sort.sortValue === -1
+                  ? "sort_selected"
+                  : ""
               }
             >
               <span className="fa fa-sort-alpha-desc pr-5"> Tên Z-A</span>
@@ -75,7 +64,9 @@ export default class Sort extends Component {
             <a
               role="button"
               className={
-                sort.by === "status" && sort.value === 1 ? "sort_selected" : ""
+                sort.sortBy === "status" && sort.sortValue === 1
+                  ? "sort_selected"
+                  : ""
               }
             >
               Trạng Thái Kích Hoạt
@@ -89,7 +80,9 @@ export default class Sort extends Component {
             <a
               role="button"
               className={
-                sort.by === "status" && sort.value === -1 ? "sort_selected" : ""
+                sort.sortBy === "status" && sort.sortValue === -1
+                  ? "sort_selected"
+                  : ""
               }
             >
               Trạng Thái Ẩn
@@ -100,3 +93,22 @@ export default class Sort extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    sort: state.sort
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onSort: sort => {
+      dispatch(actions.sortTask(sort));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sort);
